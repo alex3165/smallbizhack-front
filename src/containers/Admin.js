@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 
 const styles = {
   menu: {
-    position: 'absolute',
+    position: 'fixed',
     bottom: 0,
     left: 0,
     right: 0,

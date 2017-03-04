@@ -11,7 +11,9 @@ import { colors } from '../colors';
 const styles = {
   container: {
     width: '80%',
-    margin: 'auto'
+    margin: 'auto',
+    overflow: 'auto',
+    padding: '80px 0'
   },
   title: {
     marginBottom: 8

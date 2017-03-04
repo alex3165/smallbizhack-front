@@ -2,6 +2,8 @@ import React from 'react';
 import { colors } from '../colors';
 
 const container = {
+  position: 'fixed',
+  top: '0',
   width: '100%',
   backgroundColor: 'white',
   height: 60,
