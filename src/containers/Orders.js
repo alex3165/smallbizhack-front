@@ -6,14 +6,26 @@ import { connect } from 'react-redux';
 import ListCard from '../components/listCard';
 import Spinner from '../components/spinner';
 import Button from '../components/button';
+import { colors } from '../colors';
 
 const styles = {
   container: {
     width: '80%',
     margin: 'auto'
   },
+  title: {
+    marginBottom: 8
+  },
   order: {
     marginLeft: 12
+  },
+  description: {
+    color: colors.middleGray,
+    fontSize: 13
+  },
+  price: {
+    marginTop: 4,
+    color: colors.darkBlue
   }
 }
 
@@ -60,14 +72,18 @@ class Orders extends Component {
           <h4>Customers orders</h4>
         </Navigation>
         <div style={styles.container}>
-          <Search onChange={this.onChange} placeholder="Search for an order"/>
+          <Search onChange={this.onChange} placeholder="Search by name"/>
           <div>
             {
               Object.keys(orders).map(k => (
                 <div key={k}>
                   <ListCard onClick={() => this.onToggle(k)} imageUrl={orders[k].customer.image}>
                     <div style={styles.order}>
-                      <h5>{ orders[k].customer.name }</h5>
+                      <h5 style={styles.title}>{ orders[k].customer.name }</h5>
+                      <div style={styles.description}>
+                        <div>Ordered: { orders[k].products.map(p => p.name).join(', ') }</div>
+                        <div style={styles.price}>{ orders[k].total }£</div>
+                      </div>
                     </div>
                   </ListCard>
                   {

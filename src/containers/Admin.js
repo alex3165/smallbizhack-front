@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { colors } from '../colors';
+import { browserHistory } from 'react-router';
 
 const styles = {
   menu: {
@@ -28,13 +29,15 @@ const items = [
     label: 'orders',
     style: {
       borderRight: `1px solid ${colors.navBorder}`
-    }
+    },
+    path: '/admin'
   },
   {
     label: 'products',
     style: {
       borderRight: `1px solid ${colors.navBorder}`
-    }
+    },
+    path: '/admin/products'
   },
   {
     label: 'history'
@@ -47,7 +50,12 @@ export default class Admin extends Component {
     selected: 0
   }
 
-  onSelectMenuItem = (index) => {
+  onSelectMenuItem = (index, path) => {
+
+    if (path) {
+      browserHistory.push(path);
+    }
+
     this.setState({
       selected: index
     });
@@ -66,7 +74,7 @@ export default class Admin extends Component {
               <div
                 key={index}
                 style={{ ...styles.item, ...(index === selected && styles.selected), ...item.style}}
-                onClick={() => this.onSelectMenuItem(index)}
+                onClick={() => this.onSelectMenuItem(index, item.path)}
               >
                 { item.label }
               </div>
