@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getMerchants } from '../actions/merchants';
 import Spinner from "react-svg-spinner";
+import { browserHistory } from 'react-router'
 
 const styles = {
   container: {
@@ -50,8 +51,10 @@ class Merchants extends Component {
       <div style={styles.container}>
         {
           Object.keys(merchants).map(k => (
-            <div key={k} style={styles.card}>
-              <div style={styles.image}/>
+            <div key={k} style={styles.card} onClick={() => browserHistory.push(`/merchant/${k}`)}>
+              <div style={styles.image}>
+                <img src={merchants[k].image}/>
+              </div>
               <div style={styles.description}>
                 { merchants[k].name }
               </div>
