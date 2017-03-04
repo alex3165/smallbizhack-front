@@ -7,6 +7,7 @@ import { colors } from '../colors';
 import Navigation from '../components/navigation';
 import ListCard from '../components/listCard';
 import Spinner from '../components/spinner';
+import basket from '../basket.svg';
 
 const styles = {
   wrapper: {},
@@ -51,13 +52,14 @@ const styles = {
     borderRadius: 5,
     boxSizing: 'border-box'
   },
-  image: {
-    width: 100,
-    height: '100%',
-    overflow: 'hidden'
-  },
   description: {
-    padding: '0px 20px'
+    padding: '0px 20px',
+    flex: 8
+  },
+  side: {
+    display: 'flex',
+    width: '100%',
+    height: '100%'
   },
   productName: {
     marginBottom: 8
@@ -67,19 +69,37 @@ const styles = {
   },
   order: {
     position: 'fixed',
-    backgroundColor: 'white',
+    backgroundColor: colors.green,
     display: 'flex',
     justifyContent: 'center',
     borderTop: `1px solid ${colors.navBorder}`,
+    color: 'white',
     alignItems: 'center',
     height: 52,
     bottom: 0,
     left: 0,
     right: 0
+  },
+  add: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 4
+  },
+  basket: {
+    width: 20
+  },
+  selected: {
+    border: `1px solid ${colors.green}`
   }
 }
 
 class SingleMerchant extends Component {
+
+  state = {
+    selected: []
+  }
+
   componentWillMount() {
     const { shouldFetch, getMerchants } = this.props;
     console.log(shouldFetch);
@@ -89,8 +109,23 @@ class SingleMerchant extends Component {
     }
   }
 
+  onClick = (key) => {
+    const { selected } = this.state;
+
+    if (selected.includes(key)) {
+      this.setState({
+        selected: selected.filter(s => s != key)
+      });
+    } else {
+      this.setState({
+        selected: selected.concat([key])
+      });
+    }
+  }
+
   render() {
     const { merchant } = this.props;
+    const { selected } = this.state;
 
     if (!merchant) {
       return (
@@ -103,7 +138,7 @@ class SingleMerchant extends Component {
         <Navigation style={styles.navigation}>
           <div onClick={() => browserHistory.push('/merchants')} style={styles.back}>Back</div>
           <div style={styles.navigationTitle}>
-            {merchant.name}
+            <h4>{merchant.name}</h4>
           </div>
         </Navigation>
         <ReactMapboxGl
@@ -125,19 +160,33 @@ class SingleMerchant extends Component {
           <div style={styles.products}>
             {
               merchant.products.map((product, key) => (
-                <ListCard imageUrl={product.images[0]} key={key}>
-                  <div style={styles.description}>
-                    <h3 style={styles.productName}>{ product.name }</h3>
-                    <div style={styles.price}>Price: {product.price}£</div>
+                <ListCard
+                  style={selected.includes(key) ? styles.selected : {}}
+                  imageUrl={product.images[0]}
+                  key={key}
+                  onClick={() => this.onClick(key)}
+                >
+                  <div style={styles.side}>
+                    <div style={styles.description}>
+                      <h3 style={styles.productName}>{ product.name }</h3>
+                      <div style={styles.price}>Price: {product.price}£</div>
+                    </div>
+                    <div style={styles.add}>
+                      <img src={basket} style={styles.basket}/>
+                    </div>
                   </div>
                 </ListCard>
               ))
             }
           </div>
         </div>
-        <div style={styles.order}>
-          <h5>Order</h5>
-        </div>
+        {
+          selected.length > 0 && (
+            <div style={styles.order}>
+              <h5>Order</h5>
+            </div>   
+          )
+        }
       </div>
     );
   }
