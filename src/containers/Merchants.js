@@ -4,6 +4,7 @@ import { getMerchants } from '../actions/merchants';
 import Spinner from "react-svg-spinner";
 import { browserHistory } from 'react-router'
 import { colors } from '../colors';
+import Navigation from '../components/navigation';
 
 const styles = {
   container: {
@@ -13,14 +14,7 @@ const styles = {
     margin: 'auto'
   },
   navigation: {
-    width: '100%',
-    backgroundColor: 'white',
-    height: 60,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 40,
-    borderBottom: `1px solid ${colors.navBorder}`
+    marginBottom: 40
   },
   card: {
     width: '100%',
@@ -68,7 +62,7 @@ class Merchants extends Component {
 
     return (
       <div style={styles.container}>
-        <div style={styles.navigation}/>
+        <Navigation style={styles.navigation}/>
         <div style={styles.body}>
           <h1>Local producers</h1>
           {

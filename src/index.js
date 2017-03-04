@@ -37,8 +37,8 @@ ReactDOM.render((
           // Merchants
         }
         <Route path="/admin" component={Admin}>
-          <Route path="/orders" component={Orders}/>
-          <Route path="/products" component={Products}/>
+          <IndexRoute component={Orders}/>
+          <Route path="products" component={Products}/>
         </Route>
       </Route>
     </Router>

@@ -3,19 +3,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 import { getMerchants } from '../actions/merchants';
-import Spinner from "react-svg-spinner";
 import { colors } from '../colors';
+import Navigation from '../components/navigation';
+import ListCard from '../components/listCard';
+import Spinner from '../components/spinner';
 
 const styles = {
-  navigation: {
-    width: '100%',
-    backgroundColor: 'white',
-    height: 60,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderBottom: `1px solid ${colors.navBorder}`
-  },
+  wrapper: {},
   back: {
     flex: 2,
     height: '100%',
@@ -23,20 +17,29 @@ const styles = {
     display: 'flex',
     alignItems: 'center'
   },
+  navigation: {
+    position: 'fixed',
+    zIndex: 10,
+    top: 0
+  },
+  map: {
+    height: 240,
+    width: "100vw",
+    position: 'fixed',
+    top: 0,
+    zIndex: -1
+  },
   navigationTitle: {
     flex: 10,
     marginLeft: '50px'
   },
-  spinner: {
-    height: '100vh',
-    width: 64,
-    margin: 'auto',
-    display: 'flex',
-    alignItems: 'center'
-  },
   container: {
     width: '80%',
-    margin: 'auto'
+    margin: 'auto',
+    marginTop: 240
+  },
+  products: {
+
   },
   product: {
     width: '100%',
@@ -61,6 +64,18 @@ const styles = {
   },
   price: {
     color: colors.grayText
+  },
+  order: {
+    position: 'fixed',
+    backgroundColor: 'white',
+    display: 'flex',
+    justifyContent: 'center',
+    borderTop: `1px solid ${colors.navBorder}`,
+    alignItems: 'center',
+    height: 52,
+    bottom: 0,
+    left: 0,
+    right: 0
   }
 }
 
@@ -79,28 +94,23 @@ class SingleMerchant extends Component {
 
     if (!merchant) {
       return (
-        <div style={styles.spinner}>
-          <Spinner color="#1abc9c" size="200px"/>
-        </div>
+        <Spinner/>
       )
     }
 
     return (
-      <div>
-        <div style={styles.navigation}>
+      <div style={styles.wrapper}>
+        <Navigation style={styles.navigation}>
           <div onClick={() => browserHistory.push('/merchants')} style={styles.back}>Back</div>
           <div style={styles.navigationTitle}>
             {merchant.name}
           </div>
-        </div>
+        </Navigation>
         <ReactMapboxGl
           style="mapbox://styles/alex3165/cizvg1wrd002j2rled2afkofo"
           accessToken="pk.eyJ1IjoiYWxleDMxNjUiLCJhIjoiY2l4b3V0Z3RpMDAxczJ4cWk2YnEzNTVzYSJ9.MFPmOyHy8DM5_CVaqPYhOg"
           center={merchant.latlng}
-          containerStyle={{
-            height: "300px",
-            width: "100vw"
-          }}>
+          containerStyle={styles.map}>
             <Layer
               type="symbol"
               id="marker"
@@ -111,20 +121,22 @@ class SingleMerchant extends Component {
             </Layer>
         </ReactMapboxGl>
         <div style={styles.container}>
-          <h2>Products</h2>
-          {
-            merchant.products.map(product => (
-              <div style={styles.product} key={product.id}>
-                <div style={styles.image}>
-                  <img src={product.images[0]} style={{ maxHeight: '100%' }}/>
-                </div>
-                <div style={styles.description}>
-                  <h3 style={styles.productName}>{ product.name }</h3>
-                  <div style={styles.price}>Price: {product.price}£</div>
-                </div>
-              </div>
-            ))
-          }
+          <h2 style={{ paddingTop: 20 }}>Products</h2>
+          <div style={styles.products}>
+            {
+              merchant.products.map((product, key) => (
+                <ListCard imageUrl={product.images[0]} key={key}>
+                  <div style={styles.description}>
+                    <h3 style={styles.productName}>{ product.name }</h3>
+                    <div style={styles.price}>Price: {product.price}£</div>
+                  </div>
+                </ListCard>
+              ))
+            }
+          </div>
+        </div>
+        <div style={styles.order}>
+          <h5>Order</h5>
         </div>
       </div>
     );

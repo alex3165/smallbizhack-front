@@ -1,4 +1,4 @@
-import { ADD_MERCHANTS } from '../constants/merchants';
+import { ADD_MERCHANTS } from '../constants';
 
 const defaultState = {};
 
