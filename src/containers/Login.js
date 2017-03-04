@@ -6,7 +6,7 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        <button class="login" onClick={() => browserHistory.push("/merchants")} >Login</button>
+        <button onClick={() => browserHistory.push("/merchants")}>Login</button>
       </div>
     );
   }
