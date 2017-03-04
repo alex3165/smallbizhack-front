@@ -20,7 +20,7 @@ export const postOrder = (merchantId, products) => dispatch => {
     }
   };
 
-  return fetch(req(api(`merchants/${merchantId}/invoices`), 'POST', params))
+  return fetch(req(api(`merchants/${merchantId}/invoices`), 'POST', JSON.stringify(params)))
   .then(res => res.json())
 };
 
