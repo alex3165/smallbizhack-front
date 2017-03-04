@@ -45,9 +45,8 @@ const styles = {
   },
   title: {
     textAlign: 'center',
-    paddingTop: 20
-  },
-
+    paddingTop: 20,
+  }
 }
 
 class Merchants extends Component {
@@ -71,7 +70,9 @@ class Merchants extends Component {
       <div style={styles.container}>
         <Background/>
         <div style={styles.body}>
-          <h4 style={styles.title}>Producers from Britanny</h4>
+          <h4 style={styles.title}>
+            Producers from Britanny
+          </h4>
           {
             Object.keys(merchants).map(k => (
               <div key={k} style={styles.card} onClick={() => browserHistory.push(`/merchant/${k}`)}>

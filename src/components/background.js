@@ -16,7 +16,7 @@ const styles = {
     left: 0,
     right: 0,
     bottom: -1,
-    background: 'linear-gradient(to bottom, rgba(255,255,255, 0) 0%,rgba(255,255,255, 0.8) 100%)',
+    background: 'linear-gradient(to bottom, rgba(255,255,255, 0) 0%,rgba(255,255,255, 1) 100%)',
   }
 }
 
@@ -48,7 +48,7 @@ class Background extends Component {
 
     return (
       <div style={styles.bg}>
-        <img src={britanny} style={{ opacity, top: -60 }}/>
+        <img src={britanny} style={{ opacity, top: -60, maxWidth: '100%' }}/>
         <div style={styles.overlay}/>
       </div>
     );
