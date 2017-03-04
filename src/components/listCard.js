@@ -13,19 +13,19 @@ const styles = {
     boxSizing: 'border-box'
   },
   image: {
-    width: 100,
+    width: 140,
     height: '100%',
     overflow: 'hidden',
     backgroundColor: colors.grayBorder
   },
 }
 
-const listCard = ({ children, imageUrl, onClick }) => (
-  <div style={styles.product} onClick={onClick}>
+const listCard = ({ children, imageUrl, onClick, style }) => (
+  <div style={{ ...styles.product, ...style }} onClick={onClick}>
     <div style={styles.image}>
       <img src={imageUrl} style={{ maxHeight: '100%' }}/>
     </div>
-    <div>
+    <div style={{ width: '100%'}}>
       { children }
     </div>
   </div>

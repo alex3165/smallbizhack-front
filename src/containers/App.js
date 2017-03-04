@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 const styles = {
   container: {
     backgroundColor: '#f9f9f9',
-    height: '100vh'
+    minHeight: '100vh',
+    height: '100%'
   }
 }
 
