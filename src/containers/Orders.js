@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 
-class App extends Component {
+export default class Orders extends Component {
   render() {
     return (
       <div>
-        Test
+        Merchant Orders here 
       </div>
     );
   }
 }
-
-export default App;
