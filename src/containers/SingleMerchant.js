@@ -45,12 +45,22 @@ const styles = {
     display: 'flex',
     margin: '20px 0px',
     border: `1px solid ${colors.grayBorder}`,
-    borderRadius: 5
+    borderRadius: 5,
+    boxSizing: 'border-box'
   },
   image: {
     width: 100,
     height: '100%',
     overflow: 'hidden'
+  },
+  description: {
+    padding: '0px 20px'
+  },
+  productName: {
+    marginBottom: 8
+  },
+  price: {
+    color: colors.grayText
   }
 }
 
@@ -108,7 +118,10 @@ class SingleMerchant extends Component {
                 <div style={styles.image}>
                   <img src={product.images[0]} style={{ maxHeight: '100%' }}/>
                 </div>
-                { product.name }
+                <div style={styles.description}>
+                  <h3 style={styles.productName}>{ product.name }</h3>
+                  <div style={styles.price}>Price: {product.price}£</div>
+                </div>
               </div>
             ))
           }
