@@ -20,7 +20,7 @@ const styles = {
 class Orders extends Component {
 
   state = {
-    selectedCard: '192'
+    selectedCard: ''
   }
 
   componentWillMount() {
@@ -65,7 +65,7 @@ class Orders extends Component {
             {
               Object.keys(orders).map(k => (
                 <div key={k}>
-                  <ListCard onClick={() => this.onToggle(k)}>
+                  <ListCard onClick={() => this.onToggle(k)} imageUrl={orders[k].customer.image}>
                     <div style={styles.order}>
                       <h5>{ orders[k].customer.name }</h5>
                     </div>

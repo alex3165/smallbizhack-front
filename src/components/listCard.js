@@ -1,5 +1,6 @@
 import React from 'react';
 import { colors } from '../colors';
+import user from '../user.svg';
 
 const styles = {
   product: {
@@ -16,14 +17,17 @@ const styles = {
     width: 140,
     height: '100%',
     overflow: 'hidden',
-    backgroundColor: colors.grayBorder
+    backgroundColor: colors.lightGray,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 }
 
 const listCard = ({ children, imageUrl, onClick, style }) => (
   <div style={{ ...styles.product, ...style }} onClick={onClick}>
     <div style={styles.image}>
-      <img src={imageUrl} style={{ maxHeight: '100%' }}/>
+      <img src={imageUrl || user} style={{ maxHeight: '100%', width: !imageUrl && 50 }}/>
     </div>
     <div style={{ width: '100%'}}>
       { children }
