@@ -1,4 +1,4 @@
-export const api = endpoint => `http://localhost:8081/${endpoint}`;
+export const api = endpoint => `https://still-badlands-64161.herokuapp.com/${endpoint}`;
 
 export const req = (url, method = 'GET', body) => new Request(url, {
   method,
