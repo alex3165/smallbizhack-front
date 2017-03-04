@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getMerchants } from '../actions/merchants';
+import Spinner from "react-svg-spinner";
 
 const styles = {
   container: {
@@ -18,6 +19,13 @@ const styles = {
     width: '100%',
     height: 120,
     backgroundColor: 'white'
+  },
+  spinner: {
+    height: '100vh',
+    width: 64,
+    margin: 'auto',
+    display: 'flex',
+    alignItems: 'center'
   }
 }
 
@@ -29,6 +37,14 @@ class Merchants extends Component {
 
   render() {
     const { merchants } = this.props;
+
+    if (Object.keys(merchants).length <= 0) {
+      return (
+        <div style={styles.spinner}>
+          <Spinner color="#1abc9c" size="200px"/>
+        </div>
+      )
+    }
 
     return (
       <div style={styles.container}>
