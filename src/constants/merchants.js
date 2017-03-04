@@ -1,0 +1,2 @@
+export const ADD_MERCHANTS = 'ADD_MERCHANTS';
+export const GET_MERCHANTS = 'GET_MERCHANTS';

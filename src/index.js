@@ -13,6 +13,8 @@ import Login from './containers/Login';
 import Merchants from './containers/Merchants';
 import SingleMerchant from './containers/SingleMerchant';
 import Orders from './containers/Orders';
+import Admin from './containers/Admin';
+import Products from './containers/Products';
 
 import './index.css';
 
@@ -34,7 +36,10 @@ ReactDOM.render((
         {
           // Merchants
         }
-        <Route path="/orders" component={Orders}/>
+        <Route path="/admin" component={Admin}>
+          <Route path="/orders" component={Orders}/>
+          <Route path="/products" component={Products}/>
+        </Route>
       </Route>
     </Router>
   </Provider>
