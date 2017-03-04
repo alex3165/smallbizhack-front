@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router'
 import image from '../home.jpg';
+import logo from '../logo-white.svg';
 
 const styles = {
   background: {
@@ -13,11 +14,14 @@ const styles = {
     right: 0,
     bottom: 0,
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    alignItems: 'center'
   },
   login: {
-    width: '80%',
-    height: 50,
+    flex: 1,
+    width: '100%',
+    borderRadius: 5,
+    height: 52,
     margin: 'auto',
     backgroundColor: 'rgb(59, 89, 152)',
     border: 'none',
@@ -25,9 +29,16 @@ const styles = {
     color: 'white',
   },
   title: {
+    flex: 1,
     color: 'white',
-    width: '80%',
-    margin: 'auto'
+    width: '80%'
+  },
+  bottomLine: {
+    flex: 1,
+    width: '80%'
+  },
+  imgContainer: {
+    flex: 1
   }
 }
 
@@ -38,8 +49,13 @@ export default class Login extends Component {
       <div>
         <img src={image} style={styles.background}/>
         <div style={styles.up}>
+          <div style={styles.imgContainer}>
+            <img src={logo} style={{ width: '100%' }}/>
+          </div>
           <h1 style={styles.title}>Find products from local shops nearby</h1>
-          <button style={styles.login} onClick={() => browserHistory.push("/merchants")}>Login</button>
+          <div style={styles.bottomLine}>
+            <button style={styles.login} onClick={() => browserHistory.push("/merchants")}>Login</button>
+          </div>
         </div>
       </div>
     );

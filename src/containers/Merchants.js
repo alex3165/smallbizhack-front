@@ -40,6 +40,9 @@ const styles = {
     margin: 'auto',
     display: 'flex',
     alignItems: 'center'
+  },
+  title: {
+    textAlign: 'center'
   }
 }
 
@@ -62,9 +65,8 @@ class Merchants extends Component {
 
     return (
       <div style={styles.container}>
-        <Navigation style={styles.navigation}/>
         <div style={styles.body}>
-          <h1>Local producers</h1>
+          <h4 style={styles.title}>Producers from Britanny</h4>
           {
             Object.keys(merchants).map(k => (
               <div key={k} style={styles.card} onClick={() => browserHistory.push(`/merchant/${k}`)}>
