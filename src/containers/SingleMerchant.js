@@ -8,6 +8,7 @@ import Navigation from '../components/navigation';
 import ListCard from '../components/listCard';
 import Spinner from '../components/spinner';
 import basket from '../basket.svg';
+import { postOrder } from '../actions/orders';
 
 const styles = {
   wrapper: {},
@@ -35,7 +36,8 @@ const styles = {
     marginLeft: '50px'
   },
   container: {
-    width: '80%',
+    padding: '0px 10%',
+    backgroundColor: '#f9f9f9',
     margin: 'auto',
     marginTop: 240
   },
@@ -123,6 +125,32 @@ class SingleMerchant extends Component {
     }
   }
 
+  onAddOrder = () => {
+    const { onAddOrder, merchant } = this.props;
+    const { selected } = this.state;
+
+    onAddOrder(merchant.id, selected.reduce((acc, pId) => {
+      const alreadyExist = acc.find(p => p.productId === pId);
+      if (alreadyExist) {
+        return acc.map(({ productId, quantity }) => {
+          if (productId === pId) {
+            return {
+              productId,
+              quantity: quantity + 1
+            }
+          }
+        });
+      }
+
+      acc.push({
+        productId: pId,
+        quantity: 1
+      });
+
+      return acc;
+    }, []))
+  }
+
   render() {
     const { merchant } = this.props;
     const { selected } = this.state;
@@ -182,7 +210,7 @@ class SingleMerchant extends Component {
         </div>
         {
           selected.length > 0 && (
-            <div style={styles.order}>
+            <div style={styles.order} onClick={this.onAddOrder}>
               <h5>Order</h5>
             </div>   
           )
@@ -196,5 +224,6 @@ export default connect((state, { params }) => ({
   merchant: state.merchants[params.id],
   shouldFetch: Object.keys(state.merchants).length <= 0
 }), (dispatch) => ({
-  getMerchants: () => dispatch(getMerchants())
+  getMerchants: () => dispatch(getMerchants()),
+  onAddOrder: (mId, products) => dispatch(postOrder(mId, products))
 }))(SingleMerchant);

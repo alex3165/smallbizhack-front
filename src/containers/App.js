@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 const styles = {
   container: {
-    backgroundColor: '#f9f9f9',
     minHeight: '100vh',
     height: '100%'
   }

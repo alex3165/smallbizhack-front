@@ -29,16 +29,21 @@ const styles = {
     color: 'white',
   },
   title: {
-    flex: 1,
+    flex: 6,
     color: 'white',
-    width: '80%'
+    width: '80%',
+    alignItems: 'center',
+    display: 'flex'
   },
   bottomLine: {
-    flex: 1,
+    flex: 2,
     width: '80%'
   },
   imgContainer: {
-    flex: 1
+    flex: 3,
+    width: '80%',
+    display: 'flex',
+    alignItems: 'flex-end'
   }
 }
 

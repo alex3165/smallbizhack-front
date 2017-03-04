@@ -5,13 +5,15 @@ import Spinner from "react-svg-spinner";
 import { browserHistory } from 'react-router'
 import { colors } from '../colors';
 import Navigation from '../components/navigation';
+import Background from '../components/background';
 
 const styles = {
   container: {
   },
   body: {
     width: '80%',
-    margin: 'auto'
+    margin: 'auto',
+    marginTop: 160
   },
   navigation: {
     marginBottom: 40
@@ -42,8 +44,10 @@ const styles = {
     alignItems: 'center'
   },
   title: {
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+    paddingTop: 20
+  },
+
 }
 
 class Merchants extends Component {
@@ -65,6 +69,7 @@ class Merchants extends Component {
 
     return (
       <div style={styles.container}>
+        <Background/>
         <div style={styles.body}>
           <h4 style={styles.title}>Producers from Britanny</h4>
           {
