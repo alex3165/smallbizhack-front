@@ -34,6 +34,9 @@ const styles = {
   price: {
     color: colors.grayText,
     marginTop: 6
+  },
+  title: {
+    color: 'white'
   }
 }
 
@@ -53,7 +56,7 @@ class Products extends Component {
     return (
       <div>
         <Navigation>
-          <h4>My shop</h4>
+          <h4 style={styles.title}>My shop</h4>
         </Navigation>
         <div>
           <div style={styles.header}>

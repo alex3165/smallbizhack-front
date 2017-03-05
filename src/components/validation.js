@@ -3,7 +3,7 @@ import { colors } from '../colors';
 import check from '../check.svg';
 
 const validationStyle = {
-  position: 'absolute',
+  position: 'fixed',
   zIndex: 99,
   top: 0,
   bottom: 0,
