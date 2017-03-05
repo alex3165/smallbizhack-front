@@ -54,13 +54,12 @@ class Background extends Component {
     const { children } = this.props;
 
     const opacity = 1 - (scroll / 160);
-    console.log(opacity);
 
     return (
       <div style={styles.bg}>
         <img src={britanny} style={{ opacity, top: -60, maxWidth: '100%' }}/>
         <div style={styles.overlay}/>
-        <div style={styles.children}>
+        <div style={{ ...styles.children, opacity }}>
           { children }
         </div>
       </div>

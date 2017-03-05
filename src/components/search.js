@@ -11,6 +11,7 @@ const style= {
   border: `1px solid ${colors.grayBorder}`,
   outline: 'none',
   fontSize: 13,
+  borderRadius: 4,
   color: colors.grayText
 };
 
