@@ -13,8 +13,6 @@ import { postOrder } from '../actions/orders';
 import Validation from '../components/validation';
 import { USER_POSITION } from '../constants/index';
 
-const USER_POS = USER_POSITION.reverse();
-
 const styles = {
   wrapper: {},
   back: {
@@ -209,8 +207,8 @@ class SingleMerchant extends Component {
       )
     }
 
-    center[0] = (merchant.latlng[0] + USER_POS[0]) / 2;
-    center[1] = (merchant.latlng[1] + USER_POS[1]) / 2;
+    center[0] = (merchant.latlng[0] + USER_POSITION[0]) / 2;
+    center[1] = (merchant.latlng[1] + USER_POSITION[1]) / 2;
 
     return (
       <div style={styles.wrapper}>
@@ -241,7 +239,7 @@ class SingleMerchant extends Component {
             <Layer
               type="circle"
               paint={circle}>
-              <Feature coordinates={USER_POS}/>
+              <Feature coordinates={USER_POSITION}/>
             </Layer>
         </ReactMapboxGl>
         <div style={styles.container}>

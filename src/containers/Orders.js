@@ -128,6 +128,7 @@ class Orders extends Component {
                 </div>
               ))
             }
+            <div onClick={() => this.props.getOrders()} style={{ width: '100%', opacity: 0, height: 200 }}/>
           </div>
         </div>
       </div>
