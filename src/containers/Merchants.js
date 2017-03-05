@@ -28,12 +28,16 @@ const styles = {
   image: {
     width: '100%',
     height: 200,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
   },
   description: {
     boxSizing: 'borderBox',
     width: '100%',
     backgroundColor: 'white',
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
     borderLeft: `1px solid ${colors.grayBorder}`,
     borderRight: `1px solid ${colors.grayBorder}`,
     borderBottom: `1px solid ${colors.grayBorder}`,
@@ -113,9 +117,9 @@ class Merchants extends Component {
           <Search placeholder="Search for a category" onChange={this.onChange}/>
         </Background>
         <div style={styles.body}>
-          <h4 style={styles.title}>
+          <h3 style={styles.title}>
             Producers from Britanny
-          </h4>
+          </h3>
           {
             filteredMerchants.map(k => (
               <div key={k} style={styles.card} onClick={() => browserHistory.push(`/merchant/${k}`)}>
