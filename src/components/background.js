@@ -17,6 +17,15 @@ const styles = {
     right: 0,
     bottom: -1,
     background: 'linear-gradient(to bottom, rgba(255,255,255, 0) 0%,rgba(255,255,255, 1) 100%)',
+  },
+  children: {
+    position: 'absolute',
+    zIndex: 10,
+    left: 0,
+    right: 0,
+    width: '80%',
+    margin: 'auto',
+    top: 0
   }
 }
 
@@ -42,6 +51,7 @@ class Background extends Component {
 
   render() {
     const { scroll } = this.state;
+    const { children } = this.props;
 
     const opacity = 1 - (scroll / 160);
     console.log(opacity);
@@ -50,6 +60,9 @@ class Background extends Component {
       <div style={styles.bg}>
         <img src={britanny} style={{ opacity, top: -60, maxWidth: '100%' }}/>
         <div style={styles.overlay}/>
+        <div style={styles.children}>
+          { children }
+        </div>
       </div>
     );
   }

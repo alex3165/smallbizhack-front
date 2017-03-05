@@ -8,7 +8,9 @@ import Navigation from '../components/navigation';
 import ListCard from '../components/listCard';
 import Spinner from '../components/spinner';
 import basket from '../basket.svg';
+import basketSelected from '../basket-green.svg';
 import { postOrder } from '../actions/orders';
+import Validation from '../components/validation';
 
 const styles = {
   wrapper: {},
@@ -115,7 +117,8 @@ const styles = {
 class SingleMerchant extends Component {
 
   state = {
-    selected: []
+    selected: [],
+    validation: false
   }
 
   componentWillMount() {
@@ -166,12 +169,23 @@ class SingleMerchant extends Component {
       });
 
       return acc;
-    }, []))
+    }, [])).then(() => {
+      this.setState({
+        selected: [],
+        validation: true
+      });
+
+      setTimeout(() => {
+        this.setState({
+          validation: false
+        });
+      }, 1200);
+    })
   }
 
   render() {
     const { merchant } = this.props;
-    const { selected } = this.state;
+    const { selected, validation } = this.state;
 
     if (!merchant) {
       return (
@@ -181,6 +195,11 @@ class SingleMerchant extends Component {
 
     return (
       <div style={styles.wrapper}>
+        {
+          validation && (
+            <Validation/>
+          )
+        }
         <Navigation style={styles.navigation}>
           <div onClick={() => browserHistory.push('/merchants')} style={styles.back}>Back</div>
           <div style={styles.navigationTitle}>
@@ -208,7 +227,7 @@ class SingleMerchant extends Component {
             {
               merchant.products.map((product, key) => (
                 <ListCard
-                  style={selected.includes(key) ? styles.selected : {}}
+                  style={selected.includes(product.id) ? styles.selected : {}}
                   imageUrl={product.images[0]}
                   key={key}
                   onClick={() => this.onClick(product.id)}
@@ -219,7 +238,7 @@ class SingleMerchant extends Component {
                       <div style={styles.price}>Price: {product.price}£</div>
                     </div>
                     <div style={styles.add}>
-                      <img src={basket} style={styles.basket}/>
+                      <img src={selected.includes(product.id) ? basketSelected : basket} style={styles.basket}/>
                     </div>
                   </div>
                 </ListCard>
