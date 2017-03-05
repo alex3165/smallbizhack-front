@@ -6,6 +6,7 @@ import { browserHistory } from 'react-router'
 import { colors } from '../colors';
 import Navigation from '../components/navigation';
 import Background from '../components/background';
+import logo from '../logo.svg';
 
 const styles = {
   container: {
@@ -30,11 +31,14 @@ const styles = {
   description: {
     boxSizing: 'borderBox',
     width: '100%',
-    height: 120,
     backgroundColor: 'white',
     borderLeft: `1px solid ${colors.grayBorder}`,
     borderRight: `1px solid ${colors.grayBorder}`,
     borderBottom: `1px solid ${colors.grayBorder}`,
+  },
+  wdescription: {
+    width: '80%',
+    margin: 'auto'
   },
   spinner: {
     height: '100vh',
@@ -46,13 +50,31 @@ const styles = {
   title: {
     textAlign: 'center',
     paddingTop: 20,
+  },
+  logo: {
+    position: 'fixed',
+    width: 140,
+    bottom: 20,
+    left: 0,
+    right: 0,
+    margin: 'auto'
+  },
+  mname: {
+    marginTop: 0,
+    marginBottom: 0,
+    paddingTop: 12,
+    paddingBottom: 6
+  },
+  distance: {
+    paddingBottom: 12,
+    color: colors.middleGray
   }
 }
 
 class Merchants extends Component {
 
   componentWillMount() {
-    this.props.getMerchants();
+    this.props.getMerchants([48.1130626, -1.6686659]);
   }
 
   render() {
@@ -80,11 +102,15 @@ class Merchants extends Component {
                   <img style={{ maxWidth: '100%' }} src={merchants[k].image}/>
                 </div>
                 <div style={styles.description}>
-                  { merchants[k].name }
+                  <div style={styles.wdescription}>
+                    <h4 style={styles.mname}>{ merchants[k].name }</h4>
+                    <div style={styles.distance}>Distance: {merchants[k].distance.toFixed(2)} km</div>
+                  </div>
                 </div>
               </div>
             ))
           }
+          <img src={logo} style={styles.logo}/>
         </div>
       </div>
     );
@@ -94,5 +120,5 @@ class Merchants extends Component {
 export default connect((state) => ({
   merchants: state.merchants
 }), (dispatch) => ({
-  getMerchants: () => dispatch(getMerchants())
+  getMerchants: (latlng) => dispatch(getMerchants(latlng))
 }))(Merchants);

@@ -180,7 +180,7 @@ class SingleMerchant extends Component {
               type="symbol"
               id="marker"
               layout={{
-                "icon-image": "circle-15"
+                "icon-image": "pin"
               }}>
               <Feature coordinates={merchant.latlng}/>
             </Layer>

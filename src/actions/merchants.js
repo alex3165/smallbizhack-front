@@ -7,7 +7,7 @@ const addMerchants = data => ({
 });
 
 export const getMerchants = (latlng) => dispatch => (
-  fetch(req(api('merchants')))
+  fetch(req(api(`merchants?${latlng ? `lat=${latlng[0]}&lng=${latlng[1]}`: ''}`)))
     .then(res => res.json())
     .then((data) => dispatch(addMerchants(data)))
 );
