@@ -104,7 +104,11 @@ class Merchants extends Component {
                 <div style={styles.description}>
                   <div style={styles.wdescription}>
                     <h4 style={styles.mname}>{ merchants[k].name }</h4>
-                    <div style={styles.distance}>Distance: {merchants[k].distance.toFixed(2)} km</div>
+                    {
+                      merchants[k].distance && (
+                        <div style={styles.distance}>Distance: {merchants[k].distance.toFixed(2)} km</div>
+                      )
+                    }
                   </div>
                 </div>
               </div>
