@@ -44,7 +44,7 @@ const styles = {
     borderBottom: `1px solid ${colors.grayBorder}`,
   },
   wdescription: {
-    width: '80%',
+    width: '90%',
     margin: 'auto'
   },
   spinner: {
@@ -72,11 +72,19 @@ const styles = {
     marginTop: 0,
     marginBottom: 0,
     paddingTop: 12,
-    paddingBottom: 6
+    paddingBottom: 6,
+    display: 'flex',
+    justifyContent: 'space-between'
   },
   distance: {
-    paddingBottom: 12,
+    display: 'inline-block',
     color: colors.middleGray
+  },
+  categories: {
+    marginBottom: '10px',
+    fontSize: '14px',
+    fontStyle: 'italic',
+    display: 'block',
   }
 }
 
@@ -127,12 +135,15 @@ class Merchants extends Component {
                 <div style={{ ...styles.image, backgroundImage: `url(${merchants[k].image})`}}/>
                 <div style={styles.description}>
                   <div style={styles.wdescription}>
-                    <h4 style={styles.mname}>{ merchants[k].name }</h4>
-                    {
-                      merchants[k].distance && (
-                        <div style={styles.distance}>Distance: {merchants[k].distance.toFixed(2)} km</div>
-                      )
-                    }
+                    <h4 style={styles.mname}>
+                      { merchants[k].name }
+                      {
+                        merchants[k].distance && (
+                          <div style={styles.distance}>{merchants[k].distance.toFixed(2)} km</div>
+                        )
+                      }
+                    </h4>
+                    <span style={styles.categories}>{merchants[k].categories.join(', ')}</span>
                   </div>
                 </div>
               </div>
