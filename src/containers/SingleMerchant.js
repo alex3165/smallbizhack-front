@@ -51,7 +51,8 @@ const styles = {
     padding: '0px 10%',
     backgroundColor: '#f9f9f9',
     margin: 'auto',
-    marginTop: 240
+    marginTop: 240,
+    borderTop: `1px solid white`
   },
   products: {
 
@@ -220,7 +221,7 @@ class SingleMerchant extends Component {
             </Layer>
         </ReactMapboxGl>
         <div style={styles.container}>
-          <h3 style={{ paddingTop: 20 }}>Details</h3>
+          <h3>Details</h3>
             <div style={styles.merchantDesc}>{merchant.name} is a traditional farm producing products from Britanny with</div>
             <div style={styles.subheader}>Open Mon - Tue from 9 a.m to 6 p.m.</div>
           <h3>Products</h3>
