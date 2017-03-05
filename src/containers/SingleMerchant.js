@@ -194,7 +194,7 @@ class SingleMerchant extends Component {
                   style={selected.includes(key) ? styles.selected : {}}
                   imageUrl={product.images[0]}
                   key={key}
-                  onClick={() => this.onClick(key)}
+                  onClick={() => this.onClick(product.id)}
                 >
                   <div style={styles.side}>
                     <div style={styles.description}>
