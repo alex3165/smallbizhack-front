@@ -38,7 +38,16 @@ class Orders extends Component {
   }
 
   componentWillMount() {
+    // setInterval(this.interval, 10000);
     this.props.getOrders();
+  }
+
+  interval = () => {
+    this.props.getOrders();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   onToggle = (key) => {
