@@ -5,12 +5,12 @@ const container = {
   position: 'fixed',
   top: '0',
   width: '100%',
-  backgroundColor: 'white',
+  backgroundColor: `${colors.navColor}`,
   height: 60,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  borderBottom: `1px solid ${colors.navBorder}`
+  color: 'white'
 }
 
 const navigation = ({ children, style }) => (

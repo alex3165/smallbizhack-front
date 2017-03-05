@@ -20,7 +20,9 @@ const styles = {
     backgroundColor: colors.lightGray,
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    borderBottomLeftRadius: '4px',
+    borderTopLeftRadius: '4px'
   },
 }
 

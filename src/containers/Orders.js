@@ -15,6 +15,9 @@ const styles = {
     overflow: 'auto',
     padding: '80px 0'
   },
+  navigationh4: {
+    color: 'white'
+  },
   title: {
     marginBottom: 8
   },
@@ -88,7 +91,7 @@ class Orders extends Component {
     return (
       <div>
         <Navigation>
-          <h4>Customers orders</h4>
+          <h4 style={styles.navigationh4}>Customers bookings</h4>
         </Navigation>
         <div style={styles.container}>
           <Search onChange={this.onChange} placeholder="Search by name"/>
@@ -100,7 +103,7 @@ class Orders extends Component {
                     <div style={styles.order}>
                       <h5 style={styles.title}>{ orders[k].customer.name }</h5>
                       <div style={styles.description}>
-                        <div>Ordered: { orders[k].products.map(p => p.name).join(', ') }</div>
+                        <div>Booked: { orders[k].products.map(p => p.name).join(', ') }</div>
                         <div style={styles.price}>{ orders[k].total }£</div>
                       </div>
                     </div>

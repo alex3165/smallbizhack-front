@@ -35,6 +35,20 @@ const styles = {
     flex: 10,
     marginLeft: '50px'
   },
+  navigationTitleH4: {
+    color: 'white'
+  },
+  subheader: {
+    position: 'fixed',
+    top: '50px',
+    backgroundColor: `${colors.navColor}`,
+    height: '30px',
+    lineHeight: '30px',
+    width: '100%',
+    textAlign: 'center',
+    color: 'white',
+    zIndex: '10'
+  },
   container: {
     padding: '0px 10%',
     backgroundColor: '#f9f9f9',
@@ -71,16 +85,18 @@ const styles = {
   },
   order: {
     position: 'fixed',
-    backgroundColor: colors.green,
+    backgroundColor: colors.navColor,
     display: 'flex',
     justifyContent: 'center',
-    borderTop: `1px solid ${colors.navBorder}`,
     color: 'white',
     alignItems: 'center',
     height: 52,
     bottom: 0,
     left: 0,
     right: 0
+  },
+  orderh5: {
+    color: 'white'
   },
   add: {
     display: 'flex',
@@ -168,9 +184,10 @@ class SingleMerchant extends Component {
         <Navigation style={styles.navigation}>
           <div onClick={() => browserHistory.push('/merchants')} style={styles.back}>Back</div>
           <div style={styles.navigationTitle}>
-            <h4>{merchant.name}</h4>
+            <h4 style={styles.navigationTitleH4}>{merchant.name}</h4>
           </div>
         </Navigation>
+        <div style={styles.subheader}>Open Mon - Tue from 9 a.m to 6 p.m.</div>
         <ReactMapboxGl
           style="mapbox://styles/alex3165/cizvg1wrd002j2rled2afkofo"
           accessToken="pk.eyJ1IjoiYWxleDMxNjUiLCJhIjoiY2l4b3V0Z3RpMDAxczJ4cWk2YnEzNTVzYSJ9.MFPmOyHy8DM5_CVaqPYhOg"
@@ -213,7 +230,7 @@ class SingleMerchant extends Component {
         {
           selected.length > 0 && (
             <div style={styles.order} onClick={this.onAddOrder}>
-              <h5>Order</h5>
+              <h5 style={styles.orderh5}>Book</h5>
             </div>   
           )
         }

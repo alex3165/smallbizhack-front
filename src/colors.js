@@ -5,5 +5,6 @@ export const colors = {
   darkBlue: 'rgb(7, 42, 73)',
   green: '#1abc9c',
   lightGray: '#eaeaea',
-  middleGray: '#aaa'
+  middleGray: '#aaa',
+  navColor: 'rgb(41,128,185)'
 };

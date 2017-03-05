@@ -26,21 +26,21 @@ const styles = {
 
 const items = [
   {
-    label: 'orders',
+    label: 'Bookings',
     style: {
       borderRight: `1px solid ${colors.navBorder}`
     },
     path: '/admin'
   },
   {
-    label: 'products',
+    label: 'Products',
     style: {
       borderRight: `1px solid ${colors.navBorder}`
     },
     path: '/admin/products'
   },
   {
-    label: 'history'
+    label: 'History'
   }
 ]
 
