@@ -29,6 +29,7 @@ const styles = {
     width: '100%',
     height: 200,
     overflow: 'hidden',
+    backgroundSize: 'cover',
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
   },
@@ -123,9 +124,7 @@ class Merchants extends Component {
           {
             filteredMerchants.map(k => (
               <div key={k} style={styles.card} onClick={() => browserHistory.push(`/merchant/${k}`)}>
-                <div style={styles.image}>
-                  <img style={{ maxWidth: '100%' }} src={merchants[k].image}/>
-                </div>
+                <div style={{ ...styles.image, backgroundImage: `url(${merchants[k].image})`}}/>
                 <div style={styles.description}>
                   <div style={styles.wdescription}>
                     <h4 style={styles.mname}>{ merchants[k].name }</h4>
