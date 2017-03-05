@@ -31,6 +31,11 @@ const styles = {
   price: {
     marginTop: 4,
     color: colors.darkBlue
+  },
+  buttons: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    paddingBottom: 12
   }
 }
 
@@ -110,11 +115,11 @@ class Orders extends Component {
                   </ListCard>
                   {
                     this.state.selectedCard === k && (
-                      <div>
-                        <Button onClick={this.onSettleUp}>
+                      <div style={styles.buttons}>
+                        <Button onClick={this.onSettleUp} style={{ width: 160, height: 40 }}>
                           Settle up
                         </Button>
-                        <Button style={{ marginLeft: 10 }}>
+                        <Button style={{ marginLeft: 10, width: 160, height: 40 }}>
                           Pay with square
                         </Button>
                       </div>

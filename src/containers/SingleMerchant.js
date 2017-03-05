@@ -11,6 +11,9 @@ import basket from '../basket.svg';
 import basketSelected from '../basket-green.svg';
 import { postOrder } from '../actions/orders';
 import Validation from '../components/validation';
+import { USER_POSITION } from '../constants/index';
+
+const USER_POS = USER_POSITION.reverse();
 
 const styles = {
   wrapper: {},
@@ -52,7 +55,7 @@ const styles = {
     backgroundColor: '#f9f9f9',
     margin: 'auto',
     marginTop: 240,
-    borderTop: `1px solid white`
+    borderTop: `1px solid ${colors.navBorder}`
   },
   products: {
 
@@ -69,7 +72,10 @@ const styles = {
   },
   description: {
     padding: '0px 20px',
-    flex: 8
+    flex: 8,
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column'
   },
   side: {
     display: 'flex',
@@ -77,10 +83,13 @@ const styles = {
     height: '100%'
   },
   productName: {
-    marginBottom: 8
+    marginBottom: 8,
+    marginTop: 0,
+    fontSize: 16
   },
   price: {
-    color: colors.grayText
+    color: colors.grayText,
+    fontSize: 13
   },
   order: {
     position: 'fixed',
@@ -110,9 +119,17 @@ const styles = {
     border: `1px solid ${colors.green}`
   },
   merchantDesc: {
-    color: colors.middleGray
+    color: colors.middleGray,
+    paddingTop: 20
   }
 }
+
+const circle = {
+  "circle-radius": 6,
+  "circle-color": colors.darkBlue
+};
+
+const center = [];
 
 class SingleMerchant extends Component {
 
@@ -123,7 +140,6 @@ class SingleMerchant extends Component {
 
   componentWillMount() {
     const { shouldFetch, getMerchants } = this.props;
-    console.log(shouldFetch);
 
     if (shouldFetch) {
       getMerchants();
@@ -193,6 +209,9 @@ class SingleMerchant extends Component {
       )
     }
 
+    center[0] = (merchant.latlng[0] + USER_POS[0]) / 2;
+    center[1] = (merchant.latlng[1] + USER_POS[1]) / 2;
+
     return (
       <div style={styles.wrapper}>
         {
@@ -207,9 +226,9 @@ class SingleMerchant extends Component {
           </div>
         </Navigation>
         <ReactMapboxGl
-          style="mapbox://styles/alex3165/cizvg1wrd002j2rled2afkofo"
+          style="mapbox://styles/alex3165/cizwms35400532spfcwbhmltv"
           accessToken="pk.eyJ1IjoiYWxleDMxNjUiLCJhIjoiY2l4b3V0Z3RpMDAxczJ4cWk2YnEzNTVzYSJ9.MFPmOyHy8DM5_CVaqPYhOg"
-          center={merchant.latlng}
+          center={center}
           containerStyle={styles.map}>
             <Layer
               type="symbol"
@@ -219,12 +238,16 @@ class SingleMerchant extends Component {
               }}>
               <Feature coordinates={merchant.latlng}/>
             </Layer>
+            <Layer
+              type="circle"
+              paint={circle}>
+              <Feature coordinates={USER_POS}/>
+            </Layer>
         </ReactMapboxGl>
         <div style={styles.container}>
-          <h3>Details</h3>
-            <div style={styles.merchantDesc}>{merchant.name} is a traditional farm producing products from Britanny with</div>
-            <div style={styles.subheader}>Open Mon - Tue from 9 a.m to 6 p.m.</div>
-          <h3>Products</h3>
+          <div style={styles.merchantDesc}>{merchant.name} is a traditional farm producing products from Britanny with</div>
+          <div style={styles.subheader}>Open Mon - Tue from 9 a.m to 6 p.m.</div>
+          <h3 style={{ fontWeight: 500, fontSize: 20 }}>Products</h3>
           <div style={styles.products}>
             {
               merchant.products.map((product, key) => (

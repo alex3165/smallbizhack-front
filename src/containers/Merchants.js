@@ -8,6 +8,7 @@ import Navigation from '../components/navigation';
 import Background from '../components/background';
 import logo from '../logo.svg';
 import Search from '../components/search';
+import { USER_POSITION } from '../constants/index';
 
 const styles = {
   container: {
@@ -96,7 +97,7 @@ class Merchants extends Component {
   };
 
   componentWillMount() {
-    this.props.getMerchants([48.1130626, -1.6686659]);
+    this.props.getMerchants(USER_POSITION);
   }
 
   onChange = ({ target }) => {

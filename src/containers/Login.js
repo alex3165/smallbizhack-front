@@ -33,6 +33,8 @@ const styles = {
     color: 'white',
     width: '80%',
     alignItems: 'center',
+    textAlign: 'center',
+    fontWeight: 300,
     display: 'flex'
   },
   bottomLine: {

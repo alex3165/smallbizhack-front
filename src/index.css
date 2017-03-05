@@ -6,7 +6,11 @@ body {
 }
 
 h1, h2, h3, h4, h5 {
-  color: rgb(7, 42, 73)
+  color: rgb(7, 42, 73);
+}
+
+h1 {
+  font-family: 'Varela Round', sans-serif;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
