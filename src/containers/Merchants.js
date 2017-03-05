@@ -7,6 +7,7 @@ import { colors } from '../colors';
 import Navigation from '../components/navigation';
 import Background from '../components/background';
 import logo from '../logo.svg';
+import Search from '../components/search';
 
 const styles = {
   container: {
@@ -14,7 +15,7 @@ const styles = {
   body: {
     width: '80%',
     margin: 'auto',
-    marginTop: 160
+    marginTop: 240
   },
   navigation: {
     marginBottom: 40
@@ -73,12 +74,27 @@ const styles = {
 
 class Merchants extends Component {
 
+  state = {
+    query: ''
+  };
+
   componentWillMount() {
     this.props.getMerchants([48.1130626, -1.6686659]);
   }
 
+  onChange = ({ target }) => {
+    this.setState({
+      query: target.value
+    });
+  };
+
   render() {
     const { merchants } = this.props;
+    const { query } = this.state;
+
+    const filteredMerchants = Object.keys(merchants).filter(k => (
+      !!merchants[k].categories.find(cat => cat.toLowerCase().includes(query.toLowerCase()))
+    ));
 
     if (Object.keys(merchants).length <= 0) {
       return (
@@ -90,13 +106,15 @@ class Merchants extends Component {
 
     return (
       <div style={styles.container}>
-        <Background/>
+        <Background>
+          <Search placeholder="Search for a category" onChange={this.onChange}/>
+        </Background>
         <div style={styles.body}>
           <h4 style={styles.title}>
             Producers from Britanny
           </h4>
           {
-            Object.keys(merchants).map(k => (
+            filteredMerchants.map(k => (
               <div key={k} style={styles.card} onClick={() => browserHistory.push(`/merchant/${k}`)}>
                 <div style={styles.image}>
                   <img style={{ maxWidth: '100%' }} src={merchants[k].image}/>
