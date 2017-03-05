@@ -39,6 +39,7 @@ const styles = {
     backgroundColor: 'white',
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
+    boxSizing: 'border-box',
     borderLeft: `1px solid ${colors.grayBorder}`,
     borderRight: `1px solid ${colors.grayBorder}`,
     borderBottom: `1px solid ${colors.grayBorder}`,
