@@ -15,8 +15,7 @@ const styles = {
     top: 0,
     left: 0,
     right: 0,
-    bottom: -1,
-    background: 'linear-gradient(to bottom, rgba(255,255,255, 0) 0%,rgba(255,255,255, 1) 100%)',
+    bottom: -1
   },
   children: {
     position: 'absolute',

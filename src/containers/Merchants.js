@@ -22,7 +22,8 @@ const styles = {
   },
   card: {
     width: '100%',
-    margin: 'auto'
+    margin: 'auto',
+    marginBottom: '20px'
   },
   image: {
     width: '100%',
@@ -49,16 +50,18 @@ const styles = {
     alignItems: 'center'
   },
   title: {
-    textAlign: 'center',
+    textAlign: 'left',
     paddingTop: 20,
+    fontWeight: '300',
+    fontSize: '20px'
   },
   logo: {
-    position: 'fixed',
     width: 140,
     bottom: 20,
     left: 0,
     right: 0,
-    margin: 'auto'
+    margin: '40px auto',
+    display: 'block'
   },
   mname: {
     marginTop: 0,
