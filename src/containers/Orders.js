@@ -34,7 +34,8 @@ const styles = {
 class Orders extends Component {
 
   state = {
-    selectedCard: ''
+    selectedCard: '',
+    query: ''
   }
 
   componentWillMount() {
@@ -66,12 +67,19 @@ class Orders extends Component {
     this.props.onPayOrder();
   }
 
-  onChange = () => {
-
+  onChange = (evt) => {
+    this.setState({
+      query: evt.target.value
+    });
   }
 
   render() {
     const { orders } = this.props;
+    const { query } = this.state;
+
+    const filteredOrders = Object.keys(orders).filter(k => (
+      orders[k].customer.name.toLowerCase().includes(query.toLowerCase())
+    ));
 
     if (Object.keys(orders).length <= 0) {
       return <Spinner/>
@@ -86,7 +94,7 @@ class Orders extends Component {
           <Search onChange={this.onChange} placeholder="Search by name"/>
           <div>
             {
-              Object.keys(orders).map(k => (
+              filteredOrders.map(k => (
                 <div key={k}>
                   <ListCard onClick={() => this.onToggle(k)} imageUrl={orders[k].customer.image}>
                     <div style={styles.order}>
