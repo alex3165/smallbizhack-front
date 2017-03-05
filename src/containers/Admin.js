@@ -47,7 +47,7 @@ const items = [
 export default class Admin extends Component {
 
   state = {
-    selected: 0
+    selected: 1
   }
 
   onSelectMenuItem = (index, path) => {

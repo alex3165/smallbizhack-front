@@ -108,6 +108,8 @@ class SingleMerchant extends Component {
 
     if (shouldFetch) {
       getMerchants();
+    } else {
+      document.body.scrollTop = 0;
     }
   }
 
